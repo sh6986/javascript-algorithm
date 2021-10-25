@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // map
+            // function map(predicate, thisArg) {
+            //     let list = [];
+
+            //     for (let i = 0; i < a.length; i++) {
+            //         list.push(predicate(a[i], i));
+            //     }
+
+            //     return list;
+            // }
+
+            a = [10, 11, 12, 13, 14, 15];
+            let answer = a.map(function(v, i) {
+                if (v % 2 === 0) {
+                    return v;
+                    // 짝수만 저장될것 같지만 원본 배열을 탐색하면서 새로운 배열을 생성하는데 
+                    // 새로운 배열은 원본 배열과 길이가 동일하다
+                    // 리턴하지 않는 값은 undefied 값이 된다.
+                }
+            }, [1, 2]);
+
+            console.log(answer);
+
+        </script>
+    </body>
+</html>
