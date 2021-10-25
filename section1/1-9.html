@@ -5,12 +5,12 @@
     </head>
     <body>
         <script>
-            function solution(s){
-                let answer="";
+            function solution(s) {
+                let answer = "";
 
                 for (let x of s) {
-                    if (x=='A') {
-                        answer+='#';
+                    if (x === 'A') {
+                        answer += '#';
                     } else {
                         answer += x;
                     }
@@ -25,8 +25,6 @@
     </body>
 </html>
 
-
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -34,11 +32,11 @@
     </head>
     <body>
         <script>
-            function solution(s) {
-                let answer=s;
-
-                answer = answer.replace(/A/g, "#");
-                
+            // A를 #으로
+            function solution(s){
+                let answer = "";
+                // answer = s.replaceAll(/A/, '#'); // A라는 대문자를 찾아서 바꿔라
+                answer = s.replace(/A/g, '#'); // A라는 대문자를 찾아서 바꿔라
                 return answer;
             }
             
@@ -47,3 +45,6 @@
         </script>
     </body>
 </html>
+
+
+
