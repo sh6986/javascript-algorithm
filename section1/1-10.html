@@ -6,12 +6,12 @@
     <body>
         <script>
             function solution(s, t){
-                let answer=0;
+                let answer = 0;
 
                 for (let x of s) {
                     if (x === t) {
                         answer++;
-                    } 
+                    }
                 }
 
                 return answer;
@@ -32,8 +32,7 @@
     <body>
         <script>
             function solution(s, t){
-                let answer=s.split(t).length;
-                
+                let answer = s.split(t).length; // t를 구분자로 해서 배열을 만들고 개수를 사용해 계산
                 return answer-1;
             }
             
