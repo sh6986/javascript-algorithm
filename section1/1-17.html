@@ -6,12 +6,37 @@
     <body>
         <script>
             function solution(s){  
-                let answer;
-                
+                let answer = [];
+
+                for (let x of s) {
+                    let flug = false;
+
+                    for (let y of answer) {
+                        if (x === y) {
+                            flug = true;
+                        }
+                    }
+
+                    if (!flug) {
+                        answer.push(x);
+                    }
+                }
+
+                return answer;
+            }
+
+            function solution2(s){  
+                let answer = [];
+
+                answer = s.filter((word, index) => {
+                    return index === str.indexOf(word);
+                });
+
                 return answer;
             }
             let str=["good", "time", "good", "time", "student"];
             console.log(solution(str));
+            console.log(solution2(str));
         </script>
     </body>
 </html>
