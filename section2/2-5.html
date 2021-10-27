@@ -5,13 +5,13 @@
     </head>
     <body>
         <script>
-            function solution(arr){
-                let answer=arr;
-                
+            function solution(arr){  
+                let n=arr.length;
+                let answer=Array.from({length:n}, ()=>1);
                 return answer;
             }
-            
-            let arr=[20, 7, 23, 19, 10, 15, 25, 8, 13];
+
+            let arr=[87, 89, 92, 100, 76];
             console.log(solution(arr));
         </script>
     </body>
