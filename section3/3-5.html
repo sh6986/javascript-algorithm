@@ -8,31 +8,51 @@
             function solution(s) {
 
                 let answer = "";
+                let t = "";
+                let cnt = 0;
+
+                for (let i = 0; i < s.length; i++) {
+                    
+                    if (s[i] === t) {
+                        cnt++;
+                    } else {
+                        answer += t;
+                        answer += cnt > 1 ? cnt : '';
+                        t = s[i];
+                        cnt = 1;
+                    }
+                }
+
+                answer += t;
+                answer += cnt > 1 ? cnt : '';
+
+                return answer;
+            }
+
+            function solution2(s) {
+
+                let answer = "";
                 let cnt = 1;
 
                 s = s + " ";
 
                 for (let i = 0; i < s.length - 1; i++) {
-
-                    if (s[i] === s[i+1]) {
+                    
+                    if (s[i] === s[i + 1]) {
                         cnt++;
                     } else {
-
                         answer += s[i];
-
-                        if (cnt > 1) {
-                            answer += String(cnt);
-                        }
-
+                        answer += cnt > 1 ? cnt : '';
                         cnt = 1;
                     }
                 }
-                
+
                 return answer;
             }
             
             let str="KKHSSSSSSSE";
             console.log(solution(str));
+            console.log(solution2(str));
         </script>
     </body>
 </html>

@@ -7,10 +7,30 @@
         <script>
             function solution(s) {
                 let answer = "YES";
+                let result = "";
 
-                s = s.toLowerCase().replace(/[^a-z]/g, '');
+                s = s.toUpperCase();
+
+                for (let i = 0; i < s.length; i++) {
+                    
+                    if (s[i].charCodeAt() >= 65 && s[i].charCodeAt() <= 90) {
+                        result += s[i];
+                    }
+                }
+
+                if (result !== result.split('').reverse().join('')) {
+                    answer = "NO";
+                }
+
+                return answer;
+            }
+
+            function solution2(s) {
+                let answer = "YES";
+
+                s = s.toLowerCase().replace(/[^a-z]/g, ''); // 소문자 a ~ z 아닌것들을 찾아서 공백으로 변환
                 
-                if (s.split('').reverse().join('') !== s) {
+                if (s !== s.split('').reverse().join('')) {
                     return "NO";
                 }
 
@@ -19,6 +39,7 @@
             
             let str = "found7, time: study; Yduts; emit, 7Dnuof";
             console.log(solution(str));
+            console.log(solution2(str));
         </script>
     </body>
 </html>
