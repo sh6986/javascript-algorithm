@@ -1,0 +1,137 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+<body>
+<script>
+    // function compareMaps(map1, map2) {
+    //
+    //     for (let [key, value] of map1) {
+    //         if (value !== map2.get(key)) {
+    //             return false;
+    //         }
+    //     }
+    //
+    //     return true;
+    // }
+
+    // function solution(s, t) {
+    //     let answer = 0;
+    //     let map = new Map();
+    //     let map2 = new Map();
+    //     let k = t.length;
+    //
+    //     for (let x of t) {
+    //         if (map.has(x)) {
+    //             map.set(x, map.get(x) + 1);
+    //         } else {
+    //             map.set(x, 1);
+    //         }
+    //     }
+    //
+    //     for (let i = 0; i < k; i++) {
+    //         if (map2.has(s[i])) {
+    //             map2.set(s[i], map2.get(s[i] + 1));
+    //         } else {
+    //             map2.set(s[i], 1);
+    //         }
+    //     }
+    //
+    //     answer += compareMaps(map, map2) ? 1 : 0;
+    //
+    //     for (let i = k; i < s.length; i++) {
+    //         map2.clear();
+    //
+    //         for (let j = 0; j < k; j++) {
+    //             let n = i - j;
+    //
+    //             if (map2.has(s[n])) {
+    //                 map2.set(s[n], map2.get(s[n]) + 1);
+    //             } else {
+    //                 map2.set(s[n], 1);
+    //             }
+    //         }
+    //
+    //         answer += compareMaps(map, map2) ? 1 : 0;
+    //     }
+    //
+    //     return answer;
+    // }
+
+    function compareMaps2(map1, map2) {
+
+        // 문자개수는 3개일 수 있지만 중복된값이 있으면 키 개수가 적을 수 있으므로
+        if (map1.size !== map2.size) {
+            return false;
+        }
+
+        for (let [key, value] of map1) {
+            if (!map2.has(key) || map2.get(key) !== value) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function solution2(s, t) {
+        let answer = 0;
+        let tH = new Map();
+        let sH = new Map();
+
+        for (let x of t) {
+            if (tH.has(x)) {
+                tH.set(x, tH.get(x) + 1);
+            } else {
+                tH.set(x, 1);
+            }
+        }
+
+        let len = t.length - 1;
+
+        for (let i = 0; i < len; i++) {
+            if (sH.has(s[i])) {
+                sH.set(s[i], sH.get(s[i]) + 1);
+            } else {
+                sH.set(s[i], 1);
+            }
+        }
+
+        let lt = 0;
+
+        for (let rt = len; rt < s.length; rt++) {
+
+            // rt번째 문자 더해줌
+            if (sH.has(s[rt])) {
+                sH.set(s[rt], sH.get(s[rt]) + 1);
+            } else {
+                sH.set(s[rt], 1);
+            }
+
+            // 비교해줌
+            if (compareMaps2(sH, tH)) {
+                answer++;
+            }
+
+            // 비교했으므로 제일 첫번째 문자 1개 없애줌 -> 슬라이딩윈도우
+            sH.set(s[lt], sH.get(s[lt]) - 1);
+
+            // 없앤 후 개수가 0이면 키 자체를 없애준다.
+            if (sH.get(s[lt]) === 0) {
+                sH.delete(s[lt]);
+            }
+
+            lt++;
+        }
+
+        return answer;
+    }
+
+    let a="bacaAacba";
+    let b="abc";
+    // console.log(solution(a, b));
+    console.log(solution2(a, b));
+</script>
+</body>
+</html>
