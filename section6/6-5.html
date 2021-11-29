@@ -5,13 +5,65 @@
 </head>
 <body>
 <script>
-    function solution(s){
-        let answer=0;
+    // function solution(s) {
+    //     let answer = 0;
+    //     let stack = [];
+    //
+    //     for (let x of s) {
+    //         if (x === '(') {
+    //             stack.push(x);
+    //         } else {
+    //             // 레이저일때
+    //             if (stack[stack.length - 1] === '(') {
+    //                 stack.pop();
+    //                 stack.push('r');
+    //             } else {  // 레이저가 아닐때 여는 가로를 찾고 쇠막대기 나누기
+    //                 let n = stack.pop();
+    //                 let r = 0;
+    //
+    //                 while (n !== '(') {
+    //                     if (n === 'r') {
+    //                         r++;
+    //                     }
+    //                     n = stack.pop();
+    //                 }
+    //
+    //                 answer += (r + 1);
+    //
+    //                 for (let i = 0; i < r; i++) {
+    //                     stack.push('r');
+    //                 }
+    //             }
+    //         }
+    //     }
+
+        // return answer;
+    // }
+
+    function solution2(s) {
+        let answer = 0;
+        let stack = [];
+
+        for (let i = 0; i < s.length; i++) {
+            if (s[i] === '(') {
+                stack.push(s[i]);
+            } else {
+                stack.pop();
+
+                if (s[i - 1] === '(') {  // 레이저일때
+                    stack += stack.length;
+                } else {
+                    answer++;
+                }
+            }
+        }
+
         return answer;
     }
 
     let a="()(((()())(())()))(())";
-    console.log(solution(a));
+    // console.log(solution(a));
+    console.log(solution2(a));
 </script>
 </body>
 </html>
