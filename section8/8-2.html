@@ -5,18 +5,38 @@
 </head>
 <body>
 <script>
+    // function solution2(n) {
+    //     let answer = "";
+
+    //     function DFS(L) {
+    //         if (L > 0) {
+    //             DFS(Math.floor(L / 2));
+    //         } else {
+    //             return ;
+    //         }
+    //         answer += L % 2;
+    //     }
+
+    //     DFS(n);
+
+    //     return answer;
+    // }
+
+    // console.log(solution2(11));
+
     function solution(n) {
         let answer = "";
 
         function DFS(n) {
-            if (n === 0) return;
+            if (n === 0) return; 
             else {
                 DFS(parseInt(n / 2));
-                answer += String(n % 2);
+                answer += (n % 2);
             }
         }
 
         DFS(n);
+
         return answer;
     }
 

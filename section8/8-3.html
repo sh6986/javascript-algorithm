@@ -5,19 +5,44 @@
 </head>
 <body>
 <script>
-    function solution(n) {
-        let answer = "";
+    function solution(v) {
+        let answer;
 
+        // 전위순회
+        // function DFS(v) {
+        //     if (v > 7) {
+        //         return;
+        //     } else {
+        //         console.log(v);
+        //         DFS(v * 2);     // 왼쪽
+        //         DFS(v * 2 + 1);     // 오른쪽
+        //     }
+        // }
+
+        // 중위순회
+        // function DFS(v) {
+        //     if (v > 7) {
+        //         return;
+        //     } else {
+        //         DFS(v * 2);     // 왼쪽
+        //         console.log(v);
+        //         DFS(v * 2 + 1);     // 오른쪽
+        //     }
+        // }
+
+        // 후휘 순회
         function DFS(v) {
-            if (v > 7) return;
-            else {
-                answer += (v + ' ');
-                DFS(v * 2);
-                DFS(v * 2 + 1);
+            if (v > 7) {
+                return;
+            } else {
+                DFS(v * 2);     // 왼쪽
+                DFS(v * 2 + 1);     // 오른쪽
+                console.log(v);
             }
         }
 
-        DFS(n);
+        DFS(v);
+
         return answer;
     }
 
