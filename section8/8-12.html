@@ -5,21 +5,68 @@
 </head>
 <body>
 <script>
+    // function solution(n, r) {
+    //     let answer = 0;
+
+    //     function DFS(n, r) {
+    //         if (((n - r) === 1) || (r === 1)) {
+    //             answer += n;
+    //         } else {
+    //             DFS(n - 1, r - 1);
+    //             DFS(n - 1, r);
+    //         }
+    //     }
+
+    //     DFS(n, r);
+
+    //     return answer;
+    // }
+
+    // console.log(solution(5, 3));
+    // console.log(solution(33, 19));
+
+    // function solution(n, r) {
+    //     let answer;
+
+    //     function DFS(n, r) {
+    //         if (n === r || r === 0) {
+    //             return 1;
+    //         } else {
+    //             return DFS(n - 1, r - 1) + DFS(n - 1, r);
+    //         }
+    //     }
+
+    //     answer = DFS(n, r);
+
+    //     return answer;
+    // }
+
+    // console.log(solution(5, 3));
+    // console.log(solution(33, 19));
+
+    // 메모이제이션 적용한것 -> 시간복잡도 줄이는법
     function solution(n, r) {
-        let answer = [];
-        let dy = Array.from(Array(35), () => Array(35).fill(0));
+        let answer;
+        let dy = Array.from(Array(35), () => Array(35).fill(0));  // 2차원배열(행렬같은)
 
         function DFS(n, r) {
-            if (dy[n][r] > 0) return dy[n][r];
-            if (n === r || r === 0) return 1;
-            else return dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r);
+            if (dy[n][r] > 0) {
+                return dy[n][r];
+            }
+            if (n === r || r === 0) {
+                return 1;
+            } else {
+                return dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r);
+            }
         }
 
         answer = DFS(n, r);
+
         return answer;
     }
 
     console.log(solution(5, 3));
+    // console.log(solution(33, 19));
 </script>
 </body>
 </html>
