@@ -5,25 +5,59 @@
 </head>
 <body>
 <script>
+    // function solution(n, m){
+    //     let answer=[[]];
+    //     let arr = Array.from({length: m}, () => 0);
+    //     let sumArr = [];
+
+    //     function DFS(L) {
+    //         if (L === m) {
+
+    //             let sum = arr.reduce((a, b) => a + b);
+
+    //             if (sumArr.indexOf(sum) === -1) {
+    //                 sumArr.push(sum);
+    //                 console.log(arr);
+    //             }
+
+    //         } else {
+    //             for (let i = 1; i <= n; i++) {
+    //                 if (arr.indexOf(i) === -1) {
+    //                     arr[L] = i; 
+    //                     DFS(L + 1);
+    //                     arr[L] = 0;    
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     DFS(0);
+
+        
+    //     return answer;
+    // }
+
+    // console.log(solution(4, 2));
+
     function solution(n, m){
-        let answer=[];
-        let tmp=Array.from({length:m}, ()=>0);;
-        function DFS(L, s){
-            if(L===m){
-                answer.push(tmp.slice());
-            }
-            else{
-                for(let i=s; i<=n; i++){
-                    tmp[L]=i;
-                    DFS(L+1, i+1);
+        let answer=[[]];
+        let tmp = Array.from({length: m}, () => 0);
+
+        function DFS(L, s) {
+            if (L === m) {
+                console.log(tmp);
+            } else {
+                for (let i = s; i <= n; i++) {
+                    tmp[L] = i;
+                    DFS(L + 1, i+1);
                 }
             }
         }
+
         DFS(0, 1);
+        
         return answer;
     }
-
-    console.log(solution(4, 2));
 </script>
 </body>
 </html>
