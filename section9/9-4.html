@@ -5,26 +5,71 @@
 </head>
 <body>
 <script>
+    // function solution(board){
+    //     let answer = 0;
+
+    //     function DFS(row, col) {
+    //         if (row === board.length - 1 && col === board.length - 1) {
+    //             answer++;
+    //         } else {
+    //             // 상
+    //             if (row > 0 && board[row - 1][col] === 0) {
+    //                 board[row - 1][col] = 1;
+    //                 DFS(row - 1, col);
+    //                 board[row - 1][col] = 0;
+    //             }
+    //             // 하
+    //             if (row < board.length - 1 && board[row + 1][col] === 0) {
+    //                 board[row + 1][col] = 1;
+    //                 DFS(row + 1, col);
+    //                 board[row + 1][col] = 0;
+    //             }
+    //             // 좌
+    //             if (col > 0 && board[row][col - 1] === 0) {
+    //                 board[row][col - 1] = 1;
+    //                 DFS(row, col - 1);
+    //                 board[row][col - 1] = 0;
+    //             }
+    //             // 우
+    //             if (col < board.length - 1 && board[row][col + 1] === 0) {
+    //                 board[row][col + 1] = 1;
+    //                 DFS(row, col + 1);
+    //                 board[row][col + 1] = 0;
+    //             }
+    //         }
+    //     }
+
+    //     board[0][0] = 1;
+    //     DFS(0, 0);
+
+    //     return answer;
+    // }
+
     function solution(board){
-        let answer=0;
-        let dx=[-1, 0, 1, 0];
-        let dy=[0, 1, 0, -1];
-        function DFS(x, y){
-            if(x===6 && y===6) answer++;
-            else{
-                for(let k=0; k<4; k++){
-                    let nx=x+dx[k];
-                    let ny=y+dy[k];
-                    if(nx>=0 && nx<=6 && ny>=0 && ny<=6 && board[nx][ny]===0){
-                        board[nx][ny]=1;
+        let answer = 0;
+        let dx = [-1, 0, 1, 0];
+        let dy = [0, 1, 0, -1];
+
+        function DFS(x, y) {
+            if (x === 6 && y === 6) {
+                answer++;
+            } else {
+                for (let k = 0; k < 4; k++) {
+                    let nx = x + dx[k];
+                    let ny = y + dy[k];
+                    
+                    if (nx >= 0 && nx <= 6 && ny >= 0 && ny <= 6 && board[nx][ny] === 0) {
+                        board[nx][ny] = 1;
                         DFS(nx, ny);
-                        board[nx][ny]=0;
+                        board[nx][ny] = 0;
                     }
                 }
             }
         }
-        board[0][0]=1;
+
+        board[0][0] = 1;
         DFS(0, 0);
+
         return answer;
     }
 
