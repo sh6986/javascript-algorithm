@@ -5,33 +5,37 @@
 </head>
 <body>
 <script>
-    // function solution(m, coin){
-    //     let answer=0;
-    //     let dy=Array.from({length:m+1}, ()=>1000);
-    //     dy[0]=0;
-    //     for(let i=1; i<arr.length; i++){
-    //         for(let j=coin[i]; j<=m; j++){
-    //             dy[j]=Math.min(dy[j], dy[j-coin[i]]+1);
+    // function solution(m, coin) {
+    //     let answer = 0;
+    //     let dy = Array.from({length: m + 1}, () => 0);
+
+    //     for (let i = 0; i < coin.length; i++) {
+    //         for (let j = coin[i]; j <= m; j++) {
+    //             const cnt = dy[j - coin[i]] + 1;
+                
+    //             if (cnt < dy[j] || i === 0) {
+    //                 dy[j] = cnt;
+    //             }
     //         }
     //     }
-    //     answer=dy[m];
+
+    //     answer = dy[m];
     //     return answer;
     // }
 
     function solution(m, coin) {
         let answer = 0;
-        let dy = Array.from({length:m+1}, () => 1000);
+        let dy = Array.from({length: m + 1}, () => 1000);
 
         dy[0] = 0;
 
-        for (let i = 1; i < arr.length; i++) {
-
+        for (let i = 0; i < coin.length; i++) {
             for (let j = coin[i]; j <= m; j++) {
                 dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
             }
         }
-        answer = dy[m];
 
+        answer = dy[m];
         return answer;
     }
 
